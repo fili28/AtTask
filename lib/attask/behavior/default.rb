@@ -23,8 +23,8 @@ module Attask
         customFields = getSettingsCustomFields || options[:customFields] || getCustomFields
 
         #Adding possibility to not download any field or custom field  (by specifying empty string )
-        fields = [fields != "" ? fields : nil,customFields != "" ? customFields : nil].compact.join(",")
-        fields = sortFields(fields)
+        #fields = [fields != "" ? fields : nil,customFields != "" ? customFields : nil].compact.join(",")
+        #fields = sortFields(fields)
 
         query = { :fields => fields }.merge(query_options)
 
