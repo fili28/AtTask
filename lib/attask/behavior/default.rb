@@ -19,12 +19,13 @@ module Attask
 
         # Load the fields which need to be downloaded from attask
         fields =  getSettingsFields || options[:fields] || getAllFields
+       
         #Load custom fields which need to be downloaded from attask
         customFields = getSettingsCustomFields || options[:customFields] || getCustomFields
 
         #Adding possibility to not download any field or custom field  (by specifying empty string )
-        fields = [fields != "" ? fields : nil,customFields != "" ? customFields : nil].compact.join(",")
-        fields = sortFields(fields)
+        #fields = [fields != "" ? fields : nil,customFields != "" ? customFields : nil].compact.join(",")
+        #fields = sortFields(fields)
 
         query = { :fields => fields }.merge(query_options)
 

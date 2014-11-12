@@ -58,7 +58,6 @@ module Attask
           if (!credentials.is_loged?)
             login(credentials)
           end
-
           params = {}
           params[:path] = path
           params[:options] = options
