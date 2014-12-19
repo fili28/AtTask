@@ -1,6 +1,7 @@
 $: << File.expand_path(File.dirname(__FILE__) + "/")
 
 require "httparty"
+require "httmultiparty"
 require 'hashie'
 require 'json'
 require 'zlib'

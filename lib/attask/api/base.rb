@@ -2,6 +2,7 @@ module Attask
   module API
     class Base
       include HTTParty
+      include HTTMultiParty
 
       #debug_output $stdout
 
@@ -50,7 +51,6 @@ module Attask
             else
               raise Attask::InformHarvest.new(response, params)
           end
-
         end
 
 
@@ -62,7 +62,6 @@ module Attask
           params[:path] = path
           params[:options] = options
           params[:method] = method
-
           response = self.class.send(method, "#{credentials.host}#{path}",
                                    :query => options[:query],
                                    :body => options[:body],
@@ -75,6 +74,30 @@ module Attask
           )
           params[:response] = response.inspect.to_s
 
+          get_response(response, params)
+        end
+
+        def uploads(credentials, object)
+          if (!credentials.is_loged?)
+            login(credentials)
+          end
+          params = {}
+          params[:path] = '/uploads'
+          params[:method] = 'post'
+
+          response = self.class.send( :post, "#{credentials.host}/uploads",
+                                      :query => {:uploadedFile => object},
+                                      :headers =>  {
+                                         "sessionId" => credentials.session,
+                                         "Accept" => "application/json",
+                                         "Content-Type" => "multipart/form-data"
+                                        }
+          )
+
+          get_response(response, params)
+        end
+
+        def get_response(response, params)
           case response.code
             when 200..201
               response
@@ -94,10 +117,6 @@ module Attask
               raise Attask::InformHarvest.new(response, params)
           end
         end
-
-
-
-
     end
   end
 end
