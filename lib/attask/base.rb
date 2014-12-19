@@ -67,6 +67,10 @@ module Attask
       @issue ||= Attask::API::Issue.new(@credentials)
     end
 
+    def note
+      @note ||= Attask::API::Note.new(@credentials)
+    end
+
     def rate
       @rate ||= Attask::API::Rate.new(@credentials)
     end

@@ -2,7 +2,7 @@ module Attask
   module API
     class Base
       include HTTParty
-      include HTTMultiParty
+      #include HTTMultiParty
 
       #debug_output $stdout
 
