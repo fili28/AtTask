@@ -39,6 +39,10 @@ module Attask
       @company ||= Attask::API::Company.new(@credentials)
     end
 
+    def document
+      @document ||= Attask::API::Document.new(@credentials)
+    end
+
     def expense
       @expense ||= Attask::API::Expense.new(@credentials)
     end

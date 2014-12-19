@@ -61,8 +61,8 @@ module Attask
       end
 
       def upload(object,options = {})
-        response = request(:post, credentials, api_model.api_path, :query => object)
-        api_model.parse(response.parsed_response["data"])
+        response = uploads(credentials, object)
+        #api_model.parse(response.parsed_response["data"])
       end
 
       def update(object,options = {})
